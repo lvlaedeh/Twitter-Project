@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   root: {
+    background: '#ffffff',
     height: '100vh',
     width: '100%',
     display: 'flex',

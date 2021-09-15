@@ -13,12 +13,9 @@ const useStyles = makeStyles({
     backgroundColor : "#7ebaff !important",
     filter : "opacity(0.5)"
   },
-  leftSidbar:{
-    width: '25%',
-  },
   mainPart: {
     flex: 1,
-  }
+  },
 });
 
 export default useStyles

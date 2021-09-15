@@ -2,6 +2,8 @@ import React from 'react'
 import useStyles from './styles'
 import RightSidbar from '../RightSidbar/RightSidbar'
 import Divider from '@material-ui/core/Divider'
+import LeftSidbar from '../LeftSidbar/LeftSidbar'
+import Home from '../../pages/Home/Home'
 
 const Layout = () => {
     const classes = useStyles()
@@ -9,12 +11,9 @@ const Layout = () => {
         <div className={classes.root}>
             <RightSidbar/>
             <Divider orientation={"vertical"} className={classes.divider} />
-            <div className={classes.mainPart}>
-                main
-            </div>
-            <div className={classes.leftSidbar}>
-                leftSidbar
-            </div>
+            <Home/>
+            <Divider orientation={"vertical"} className={classes.divider} />
+            <LeftSidbar/>
         </div>
     )
 }

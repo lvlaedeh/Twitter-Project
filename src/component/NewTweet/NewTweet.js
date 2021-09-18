@@ -1,5 +1,5 @@
 import { Button, Grid, IconButton } from '@material-ui/core'
-import useStyles from '../../Styles'
+import useStyles from './Styles'
 import React from 'react'
 
 

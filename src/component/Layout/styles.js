@@ -13,8 +13,9 @@ const useStyles = makeStyles({
     backgroundColor : "#7ebaff !important",
     filter : "opacity(0.5)"
   },
-  mainPart: {
+  content: {
     flex: 1,
+    overflowY: 'auto',
   },
 });
 

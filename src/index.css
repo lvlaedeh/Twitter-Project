@@ -3,5 +3,12 @@ body {
   padding: 0;
   direction: rtl;
 }
+a {
+  text-decoration: none !important;
+  color: unset !important;
+}
+a:visited {
+  color: unset;
+}
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { Grid , Typography , ButtonBase} from '@material-ui/core'
 
@@ -11,13 +11,15 @@ const hashtag = [
     "سامسونگ",
     "جاوااسکریپت",
 ]
-const RightSidbar = () => {
+const RightSidbar = (props) => {
+
     const classes = useStyles()
     return (
         <div className={classes.root}>
+            <Link to={"/"}>
             <Grid container alignItems={'center'} >
                 <Grid item>
-                    <img src={"images/logo.png"}/>
+                    <img src={"/images/logo.png"}/>
                 </Grid>
                 <Grid item>
                     <Typography className={classes.logoType} >
@@ -30,15 +32,18 @@ const RightSidbar = () => {
             </Typography>
             <Grid container direction="column" alignItems={'center'}>
                 {hashtag.map(item => <ButtonBase className={classes.hashtagParent}>
-                    <Grid item container>
-                        <img src={'images/hashtag.png'} />
-                        <Typography className={classes.hashtag}>
-                            {item}
-                        </Typography>
-                    </Grid>
+                    <Link to={"/hashtags/"+item} style={{width: '100%'}}>
+                        <Grid item container>
+                            <img src={'/images/hashtag.png'} />
+                            <Typography className={classes.hashtag}>
+                                {item}
+                            </Typography>                       
+                        </Grid>
+                    </Link>
                 </ButtonBase>)
                 }
-            </Grid>    
+            </Grid> 
+            </Link>   
         </div>
     )
 }

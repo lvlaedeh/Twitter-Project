@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme)=>({
   hashtagParent : {
     marginBottom : '0.5rem !important',
     padding:'0.15rem !important',
-    width: '100% '
+    width: '100%',
+
   }
 }));
 

@@ -3,7 +3,12 @@ import React from 'react'
 import useStyles from './Styles'
 import Favorite from '@material-ui/icons/Favorite';
 
+
+
 const Tweet = ({data}) => {
+    const renderTweet = (text) => {
+        return {__html: text.replace(/#\S+/g , "<span style='color:blue'>$&</span>")};
+    }
     const classes = useStyles()
     return (
         <div className={classes.newTweet}>
@@ -15,13 +20,13 @@ const Tweet = ({data}) => {
                         <Typography className={classes.tweetId}>{data.sender.id}</Typography>
                     </Grid>
                     <Grid item>
-                        <Typography className={classes.tweetText}>{data.text}</Typography>
+                        <Typography dangerouslySetInnerHTML={renderTweet(data.text)} className={classes.tweetText} component={"p"}></Typography>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid container direction={'row-reverse'} style={{marginTop: '1rem', alignItems: 'center'}}>
             <IconButton className={classes.newTweetImgBtn}>
-                    <img src={'./images/retweet.png'} className={classes.newTweetImg}/>
+                    <img src={'/images/retweet.png'} className={classes.newTweetImg}/>
                 </IconButton>
                 <IconButton className={classes.newTweetImgBtn}>
                     <Favorite className={classes.tweetImg}/>

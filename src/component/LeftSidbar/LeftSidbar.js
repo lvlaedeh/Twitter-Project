@@ -1,5 +1,6 @@
 import { Divider, Grid, Typography } from '@material-ui/core'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useStyles } from './LeftSidbar-css'
 import Tweeter from './tweeter/tweeter'
 
@@ -7,27 +8,27 @@ const tweeter = [
     {
         name: 'Xiaomi',
         id: '@Xiaomi',
-        img: 'images/xiaomi.png'
+        img: '/images/xiaomi.png'
     },
     {
         name: 'Samsung',
         id: '@samsung',
-        img: 'images/samsung.png'
+        img: '/images/samsung.png'
     },
     {
         name: 'بیل گیتس',
         id: '@BillGates',
-        img: 'images/bil.png'
+        img: '/images/bil.png'
     },
     {
         name: 'مایک بای',
         id: '@Mike_IMC',
-        img: 'images/mike.png'
+        img: '/images/mike.png'
     },
     {
         name: '!شرلی ونگ',
         id: '@ُShirley_IMC',
-        img: 'images/shily.png'
+        img: '/images/shily.png'
     },
 ]
 
@@ -36,7 +37,7 @@ const LeftSidbar = () => {
     return (
         <div className={classes.root}>
             <Grid container direction={"row-reverse"}>
-                <img src={"images/user img.png"} style={{width: 'max-content'}} />
+                <img src={"/images/user img.png"} style={{width: 'max-content'}} />
                 <Grid item container direction={"column"} className={classes.proftext} >
                     <Typography className={classes.profName}>محمد مطواعی</Typography>
                     <Typography className={classes.profId}>Mohammad.matvayi</Typography>
@@ -48,7 +49,9 @@ const LeftSidbar = () => {
                 {tweeter.map((item,index)=>{
                 return(
                     <>
-                        <Tweeter name={item.name} id={item.id} image={item.img} />
+                        <Link to={"/users/"+item.name}>
+                            <Tweeter name={item.name} id={item.id} image={item.img} />
+                        </Link>
                         {index!==tweeter.length-1 &&
                         <Divider style={{margin: '0 -24px'}}/>}
                     </>

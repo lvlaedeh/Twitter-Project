@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useStyles } from './LeftSidbar-css'
+import { useStyles } from './style'
 import Tweeter from './tweeter/tweeter'
 
 const tweeter = [
@@ -49,7 +49,8 @@ const LeftSidbar = () => {
                 {tweeter.map((item,index)=>{
                 return(
                     <>
-                        <Link to={"/users/"+item.name}>
+                    
+                        <Link to={"/users/"+item.name} style={{width: '100%'}} >
                             <Tweeter name={item.name} id={item.id} image={item.img} />
                         </Link>
                         {index!==tweeter.length-1 &&

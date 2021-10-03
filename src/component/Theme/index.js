@@ -12,8 +12,16 @@ palette:{
 },
 overrides:{
     MuiTypography : {
-        root:{
+        body1:{
+            fontFamily: "Shabnam " ,
+            fontSize: '1.2rem'
+        }
+    },
+    MuiButton: {
+        label: {
             fontFamily: "Shabnam !important",
+            color: '#fff' ,
+            fontSize: '1rem'
         }
     }
 }

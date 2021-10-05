@@ -1,85 +1,23 @@
 import { Divider } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TweetList from '../../component/TweetList/TweetList'
 import useStyles from '../Styles'
 import Header from '../../component/Header/Header'
 import { Person } from '@material-ui/icons'
-
-const tweets = [{
-    sender:{
-        name: 'maedeh doabi',
-        id: '@maedeh_doabi',
-        img: '/images/samsung.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی #صبحانه ست چون کسی مجبورت نمیکنه #خورشت_کرفس یخوری",
-    liked: 116,
-},
-{
-    sender:{
-        name: 'سیامک کوه دره',
-        id: '@kooooooh',
-        img: '/images/koooh_user.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 34,
-},
-{
-    sender:{
-        name: 'maedeh doabi',
-        id: '@maedeh_doabi',
-        img: '/images/samsung.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 457,
-},
-{
-    sender:{
-        name: 'maedeh doabi',
-        id: '@maedeh_doabi',
-        img: '/images/samsung.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 116,
-},
-{
-    sender:{
-        name: 'سیامک کوه دره',
-        id: '@kooooooh',
-        img: '/images/koooh_user.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 56,
-},
-{
-    sender:{
-        name: 'maedeh doabi',
-        id: '@maedeh_doabi',
-        img: '/images/samsung.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 676,
-},
-{
-    sender:{
-        name: 'سیامک کوه دره',
-        id: '@kooooooh',
-        img: '/images/koooh_user.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 568,
-},
-{
-    sender:{
-        name: 'maedeh doabi',
-        id: '@maedeh_doabi',
-        img: '/images/samsung.png'
-    },
-    text: "بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری کسی هم درست نمیکنه بهترین وعده غذایی صبحانست چون کسی مجبورت نمیکنه خورشت کرفس یخوری",
-    liked: 90,
-},
-]
+import { getAllTweets } from '../../api/api_tweet'
 
 const TweetsByUser = (props) => {
+
+    const [tweets,setTweets] = useState([])
+
+    useEffect(()=>{
+        getAllTweets((isOk,data)=>{
+            if(!isOk)
+                return alert(data.massege);
+            else setTweets(data)
+        })
+    },[])
+
     const classes = useStyles()
     return (
         <div>

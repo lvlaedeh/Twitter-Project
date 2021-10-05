@@ -1,38 +1,22 @@
 import { Divider, Grid, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getUser } from '../../api/api_tweet'
 import { useStyles } from './style'
 import Tweeter from './tweeter/tweeter'
 
-const tweeter = [
-    {
-        name: 'Xiaomi',
-        id: '@Xiaomi',
-        img: '/images/xiaomi.png'
-    },
-    {
-        name: 'Samsung',
-        id: '@samsung',
-        img: '/images/samsung.png'
-    },
-    {
-        name: 'بیل گیتس',
-        id: '@BillGates',
-        img: '/images/bil.png'
-    },
-    {
-        name: 'مایک بای',
-        id: '@Mike_IMC',
-        img: '/images/mike.png'
-    },
-    {
-        name: '!شرلی ونگ',
-        id: '@ُShirley_IMC',
-        img: '/images/shily.png'
-    },
-]
-
 const LeftSidbar = () => {
+
+    const [user,setUser] = useState([])
+
+    useEffect(()=>{
+        getUser((isOk,data)=>{
+            if(!isOk)
+                return alert(data.massege);
+            else setUser(data)
+        })
+    },[])
+
     const classes = useStyles()
     return (
         <div className={classes.root}>
@@ -46,14 +30,14 @@ const LeftSidbar = () => {
             <Grid container direction="column" className={classes.tweeterRoot}>
                 <Typography className={classes.tweeterTitle}> بهترین خبرنگاران</Typography>
                 <Divider style={{margin: '0 -24px'}} />
-                {tweeter.map((item,index)=>{
+                {user.map((item,index)=>{
                 return(
                     <>
                     
                         <Link to={"/users/"+item.name} style={{width: '100%'}} >
                             <Tweeter name={item.name} id={item.id} image={item.img} />
                         </Link>
-                        {index!==tweeter.length-1 &&
+                        {index!==user.length-1 &&
                         <Divider style={{margin: '0 -24px'}}/>}
                     </>
                 )})}

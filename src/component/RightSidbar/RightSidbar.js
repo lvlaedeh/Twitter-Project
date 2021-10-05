@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { Grid , Typography , ButtonBase} from '@material-ui/core'
+import { getHashTags } from '../../api/api_tweet'
 
-const hashtag = [
-    "هلو_سامر",
-    "سامسونگ",
-    "جاوااسکریپت",
-    "هلو_سامر",
-    "سامسونگ",
-    "جاوااسکریپت",
-]
 const RightSidbar = (props) => {
+
+    const [hashtag,setHashtag] = useState([])
+
+    useEffect(()=>{
+        getHashTags((isOk,data)=>{
+            if(!isOk)
+                return alert(data.massege);
+            else setHashtag(data)
+        })
+    },[])
 
     const classes = useStyles()
     return (

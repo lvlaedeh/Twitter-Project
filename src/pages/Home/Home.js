@@ -14,7 +14,7 @@ const Home = ( ) => {
     useEffect(()=>{
         getAllTweets((isOk,data)=>{
             if(!isOk)
-                return alert(data.massege);
+                return alert(data.messege);
             else setTweets(data)
         })
     },[])

@@ -1,10 +1,12 @@
 import React from 'react'
+import 'react-toastify/dist/ReactToastify.css'
 import Layout from './component/Layout/Layout'
 import { BrowserRouter as Router, Switch , Route  } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import TweetByHashTag from './pages/TweetByHashTag/TweetByHashTag'
 import TweetsByUser from './pages/TweetsByUser/TweetsByUser'
 import auth from './pages/auth/Auth'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
@@ -21,7 +23,7 @@ const App = () => {
           </Layout>
           </Switch>
         </Router>
-      
+        <ToastContainer/>
     </div>
   )
 }

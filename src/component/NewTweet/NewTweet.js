@@ -32,7 +32,7 @@ const NewTweet = () => {
     return (
         <div className={classes.newTweet}>
             <Grid container>
-                <img src={"images/user img.png"} style={{width: 'max-content'}} />
+                <img src={"/images/user img.png"} style={{width: 'max-content'}} />
                 <input  value={newTweet} onChange={(e)=> setNewTweet(e.target.value)} placeholder="توییت کن..." className={classes.input}/>
             </Grid> 
             <Grid container direction={'row-reverse'} style={{marginTop: '1rem'}}>

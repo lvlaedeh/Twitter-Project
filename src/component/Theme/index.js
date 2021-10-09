@@ -25,5 +25,6 @@ overrides:{
         }
     }
 }
+
 })
 export default Theme

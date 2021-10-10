@@ -15,6 +15,11 @@ input: {
         outline : "unset"
     },
 },
+newTweetImage:{
+    width: 50,
+    height: 50,
+     borderRadius: '50%' 
+},
 newTweetButton: {
     color: '#fff',
     fontFamily: 'Shabnam',

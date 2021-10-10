@@ -6,18 +6,27 @@ import Favorite from '@material-ui/icons/Favorite';
 
 
 const Tweet = ({data}) => {
+
     const renderTweet = (text) => {
         return {__html: text.replace(/#\S+/g , "<span style='color:blue'>$&</span>")};
     }
+
     const classes = useStyles()
+
+    const getImage = () => {
+        if(data.user.image)
+            return data.user.image
+        else return "/images/person.png"
+    }
+
     return (
         <div className={classes.newTweet}>
             <Grid container>
-                <img src={data.sender.img} style={{height: 'max-content'}} />
+                <img src={getImage()} className={classes.tweetImage} />
                 <Grid item container direction={"column"} style={{flex: 1, marginRight: '1rem'}}>
                     <Grid item container>
-                        <Typography className={classes.tweetName}>{data.sender.name}</Typography>
-                        <Typography className={classes.tweetId}>{data.sender.id}</Typography>
+                        <Typography className={classes.tweetName}>{data.user.name}</Typography>
+                        <Typography className={classes.tweetId}>{data.user.id}</Typography>
                     </Grid>
                     <Grid item>
                         <Typography dangerouslySetInnerHTML={renderTweet(data.text)} className={classes.tweetText} component={"p"}></Typography>

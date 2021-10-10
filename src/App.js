@@ -29,11 +29,11 @@ const App = () => {
     </div>
   )
 }
-const isLogin = () => !!localStorage.getItem("x-auth-token") || true
+const isLogin = () => !!localStorage.getItem("x-auth-token")
 
 const PuplicRoute = ({component, ...props}) => {
   return <Route {...props} render={(props)=> {
-    if(isLogin()||true)
+    if(isLogin())
       return <Redirect to={"/"}/>
     else {
       return React.createElement(component,props)

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAxiosInstance = () => {
+export const getAxiosInstanceJsonServer = () => {
    return( axios.create({
         baseURL: "http://localhost:3000",
         headers: {

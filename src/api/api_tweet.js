@@ -1,8 +1,8 @@
-import { getAxiosInstance } from "./api";
+import { getAxiosInstanceApi, getAxiosInstanceJsonServer } from "./api";
 
 
 export const getAllTweets = (callback) =>{
-getAxiosInstance().get("/tweets").then((response)=> {
+getAxiosInstanceApi().post("getAllTweet").then((response)=> {
     const data = response.data
     callback(true,data)
 }).catch((error) => {
@@ -12,7 +12,7 @@ getAxiosInstance().get("/tweets").then((response)=> {
 }
 
 export const getUser = (callback) => {
-getAxiosInstance().get("/user").then((response)=> {
+getAxiosInstanceJsonServer().get("/user").then((response)=> {
     const data = response.data
     callback(true,data)
 }).catch((error) => {
@@ -22,7 +22,7 @@ getAxiosInstance().get("/user").then((response)=> {
 }
 
 export const getHashTags = (callback) => {
-    getAxiosInstance().get("/hashTags").then((response)=> {
+    getAxiosInstanceJsonServer().get("/hashTags").then((response)=> {
         const data = response.data
         callback(true,data)
     }).catch((error) => {
@@ -32,10 +32,11 @@ export const getHashTags = (callback) => {
     }
 
     export const newTweetReqest = (data,callback) => {
-        getAxiosInstance().post("/tweets",data).then((response)=> {
-            callback(true)
-        }).catch((error) => {
-            console.log(error);
-            callback(false)
-        })
+        getAxiosInstanceApi().post("newTweet",data).then((response)=> {
+            const data = response.data
+        callback(true,data)
+    }).catch((error) => {
+        console.log(error);
+        callback(false,error)
+    })
         }

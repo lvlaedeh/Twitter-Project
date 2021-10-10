@@ -7,6 +7,11 @@ const useStyles = makeStyles((theme)=>({
     display: 'flex',
     flexDirection: 'column',
 },
+tweetImage:{
+  width: 50,
+  height: 50,
+  borderRadius: '50%'
+},
   newTweetImg: {
     width: 'max-content',
     height: '1.5rem',

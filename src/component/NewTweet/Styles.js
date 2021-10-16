@@ -40,6 +40,13 @@ newTweetImg: {
 newTweetImgBtn: {
     padding: 'unset',
 },
+tweetImg: {
+    backgroundSize: 'contain',
+    width: '10rem',
+    height: '10rem',
+    marginTop: '1rem',
+    backgroundRepeat:" no-repeat"
+}
 
 }))
 

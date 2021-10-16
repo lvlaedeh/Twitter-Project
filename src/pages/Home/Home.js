@@ -13,23 +13,20 @@ const Home = ( ) => {
     const [tweets,setTweets] = useState([])
 
     useEffect(()=>{
-        uploadTweets()
-    },[])
-
-    const uploadTweets = () => {
         getAllTweets((isOk,data)=>{
             if(!isOk)
                 return toast.error(data.message);
             else setTweets(data)
         })
-    }
+    },[])
+
 
     const classes = useStyles()
     return (
         <div>
             <Header icon={<HouseIcon/>} title={"خانه"}/>
             <Divider className={classes.divder}/>
-            <NewTweet uploadTweets={uploadTweets()} />
+            <NewTweet />
             <TweetList data={tweets}/>
         </div>
     )

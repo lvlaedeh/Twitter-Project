@@ -30,6 +30,11 @@ const Tweet = ({data}) => {
                     </Grid>
                     <Grid item>
                         <Typography dangerouslySetInnerHTML={renderTweet(data.text)} className={classes.tweetText} component={"p"}></Typography>
+                        {data.image &&
+                            <div>
+                                <div style={{backgroundImage: `url(${data.image})`}} className={classes.tweetImg}></div>
+                            </div>
+                        }
                     </Grid>
                 </Grid>
             </Grid>

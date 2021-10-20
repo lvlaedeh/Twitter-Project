@@ -25,7 +25,7 @@ const Home = () => {
 
     const classes = useStyles()
     return (
-        <div>
+        <div className={classes.homePage}>
             <Header icon={<HouseIcon/>} title={"خانه"}/>
             <Divider className={classes.divder}/>
             <NewTweet />

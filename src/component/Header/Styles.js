@@ -2,8 +2,9 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme)=>({
   header: {
-      display: 'flex',
-      padding: '18px',
+    background: '#fff',
+    display: 'flex',
+    padding: '18px',
   },
   headerTitle: {
       fontWeight: 600,

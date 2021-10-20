@@ -39,4 +39,14 @@ export const getHashTags = (callback) => {
         console.log(error);
         callback(false,error)
     })
+    }
+
+    export const likedTweet = (id,callback) => {
+        getAxiosInstanceApi().get("likeTweet/"+id).then((response)=> {
+            const data = response.data
+            callback(true,data)
+        }).catch((error) => {
+            console.log(error);
+            callback(false,error)
+        })
         }

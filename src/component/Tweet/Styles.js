@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme)=>({
     padding: '18px',
     display: 'flex',
     flexDirection: 'column',
+    marginTop: "0.5rem"
 },
 tweetImage:{
   width: 50,
@@ -43,7 +44,9 @@ tweetText: {
     fontSize: '0.9rem'
 },
 likedCount: {
-    marginLeft: '0.5rem'
+    marginLeft: '0.5rem',
+    fontSize: "1rem",
+    color: "#b5b3b3",
 },
 tweetImgLike: {
   color: 'red',

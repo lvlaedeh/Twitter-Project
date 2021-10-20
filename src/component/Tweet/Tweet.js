@@ -2,7 +2,9 @@ import { Grid, IconButton, Typography } from '@material-ui/core'
 import React from 'react'
 import useStyles from './Styles'
 import Favorite from '@material-ui/icons/Favorite';
-import { setTweetText, useTweetDispatch } from '../../conext/TweetContext';
+import { likeTweet, setTweetText, useTweetDispatch } from '../../conext/TweetContext';
+import { likedTweet } from '../../api/api_tweet';
+import { toast } from 'react-toastify';
 
 
 
@@ -23,6 +25,14 @@ const Tweet = ({data}) => {
 
     const retweetClick = () => {
         setTweetText(tweetDispatch,data.text)
+    }
+
+    const handleLike = () => {
+        likedTweet(data._id,(isOk,data)=>{
+            if(!isOk)
+                return toast.error(data);
+        })
+        likeTweet(tweetDispatch, data._id)
     }
 
     return (
@@ -48,7 +58,7 @@ const Tweet = ({data}) => {
             <IconButton className={classes.newTweetImgBtn} onClick={retweetClick} >
                     <img src={'/images/retweet.png'} className={classes.newTweetImg}/>
                 </IconButton>
-                <IconButton className={classes.newTweetImgBtn}>
+                <IconButton className={classes.newTweetImgBtn} onClick={handleLike}>
                     <Favorite className={classes.tweetImgLike}/>
                 </IconButton>
                 <Typography className={classes.likedCount}>{data.likes}</Typography>

@@ -26,7 +26,7 @@ const LeftSidbar = () => {
     useEffect(()=>{
         getUser((isOk,data)=>{
             if(!isOk)
-                return alert(data.massege);
+                return toast.error(data.massege);
             else setUser(data)
         })
     },[])
@@ -77,7 +77,7 @@ const LeftSidbar = () => {
                     <>
                     
                         <Link to={"/users/"+item.name} style={{width: '100%'}} >
-                            <Tweeter name={item.name} id={item.id} image={item.img} />
+                            <Tweeter name={item.name} id={item.username} image={item.image} />
                         </Link>
                         {index!==user.length-1 &&
                         <Divider style={{margin: '0 -24px'}}/>}

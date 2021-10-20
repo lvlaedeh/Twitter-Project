@@ -2,6 +2,7 @@ import { Grid, IconButton, Typography } from '@material-ui/core'
 import React from 'react'
 import useStyles from './Styles'
 import Favorite from '@material-ui/icons/Favorite';
+import { setTweetText, useTweetDispatch } from '../../conext/TweetContext';
 
 
 
@@ -12,11 +13,16 @@ const Tweet = ({data}) => {
     }
 
     const classes = useStyles()
+    const tweetDispatch = useTweetDispatch()
 
     const getImage = () => {
         if(data.user.image)
             return data.user.image
         else return "/images/person.png"
+    }
+
+    const retweetClick = () => {
+        setTweetText(tweetDispatch,data.text)
     }
 
     return (
@@ -39,13 +45,13 @@ const Tweet = ({data}) => {
                 </Grid>
             </Grid>
             <Grid container direction={'row-reverse'} style={{marginTop: '1rem', alignItems: 'center'}}>
-            <IconButton className={classes.newTweetImgBtn}>
+            <IconButton className={classes.newTweetImgBtn} onClick={retweetClick} >
                     <img src={'/images/retweet.png'} className={classes.newTweetImg}/>
                 </IconButton>
                 <IconButton className={classes.newTweetImgBtn}>
-                    <Favorite className={classes.tweetImg}/>
+                    <Favorite className={classes.tweetImgLike}/>
                 </IconButton>
-                <Typography className={classes.likedCount}>{data.liked}</Typography>
+                <Typography className={classes.likedCount}>{data.likes}</Typography>
             </Grid>
         </div>
     )

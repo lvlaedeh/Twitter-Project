@@ -42,8 +42,8 @@ newTweetImgBtn: {
 },
 tweetImg: {
     backgroundSize: 'contain',
-    width: '10rem',
-    height: '10rem',
+    width: '20rem',
+    height: '20rem',
     marginTop: '1rem',
     backgroundRepeat:" no-repeat"
 }

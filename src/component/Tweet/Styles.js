@@ -31,13 +31,12 @@ tweetId: {
     color: theme.palette.text.hint
 },
 tweetImg: {
-  color: 'red',
-  width: 'max-content',
-    height: '1.5rem',
-    padding: '0.2rem',
-    border: '0.5px solid #3337',
-    borderRadius: '50%',
-    marginLeft: '0.8rem',
+  width: '20rem',
+  height: '20rem',
+  marginTop: '2rem',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+
 },
 tweetText: {
     marginTop: '1.3rem',
@@ -46,6 +45,15 @@ tweetText: {
 likedCount: {
     marginLeft: '0.5rem'
 },
+tweetImgLike: {
+  color: 'red',
+  width: 'max-content',
+    height: '1.5rem',
+    padding: '0.2rem',
+    border: '0.5px solid #3337',
+    borderRadius: '50%',
+    marginLeft: '0.8rem',
+}
 
 }))
 

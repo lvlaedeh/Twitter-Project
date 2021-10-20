@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { Grid , Typography , ButtonBase} from '@material-ui/core'
 import { getHashTags } from '../../api/api_tweet'
+import { toast } from 'react-toastify'
 
-const RightSidbar = (props) => {
+const RightSidbar = () => {
 
     const [hashtag,setHashtag] = useState([])
 
     useEffect(()=>{
         getHashTags((isOk,data)=>{
             if(!isOk)
-                return alert(data.massege);
+                return toast.error(data.massege);
             else setHashtag(data)
         })
     },[])
@@ -35,11 +36,11 @@ const RightSidbar = (props) => {
             </Typography>
             <Grid container direction="column" alignItems={'center'}>
                 {hashtag.map(item => <ButtonBase className={classes.hashtagParent}>
-                    <Link to={"/hashtags/"+item} style={{width: '100%'}}>
+                    <Link to={"/hashtags/"+item.text} style={{width: '100%'}}>
                         <Grid item container>
                             <img src={'/images/hashtag.png'} />
                             <Typography className={classes.hashtag}>
-                                {item}
+                                {item.text}
                             </Typography>                       
                         </Grid>
                     </Link>

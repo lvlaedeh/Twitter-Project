@@ -1,5 +1,5 @@
 import { Divider } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../component/Header/Header'
 import NewTweet from '../../component/NewTweet/NewTweet'
 import TweetList from '../../component/TweetList/TweetList'
@@ -7,16 +7,18 @@ import useStyles from '../Styles'
 import HouseIcon from '@material-ui/icons/House';
 import { getAllTweets } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
+import { setTweetList as setTweets ,useTweetDispatch,useTweetState } from '../../conext/TweetContext'
 
-const Home = ( ) => {
+const Home = () => {
 
-    const [tweets,setTweets] = useState([])
+    const {tweetList: tweets} = useTweetState()
+    const tweetDispatch = useTweetDispatch()
 
     useEffect(()=>{
         getAllTweets((isOk,data)=>{
             if(!isOk)
                 return toast.error(data.message);
-            else setTweets(data)
+            else setTweets(tweetDispatch,data)
         })
     },[])
 

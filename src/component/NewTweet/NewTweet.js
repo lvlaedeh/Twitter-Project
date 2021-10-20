@@ -3,11 +3,12 @@ import useStyles from './Styles'
 import React , {useRef, useState} from 'react'
 import { newTweetReqest } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
-
+import {setTweetText as setNewTweet, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
 
 const NewTweet = () => {
     
-    const [newTweet,setNewTweet] = useState()
+    const {tweetText: newTweet} = useTweetState()
+    const tweetDispatch = useTweetDispatch()
     const inputFile = useRef()
     const [imageFile,setImageFile] = useState()
     const [imagePath,setImagePath] = useState()
@@ -21,7 +22,7 @@ const NewTweet = () => {
             if(!isOk)
                 return toast.error(response)
             toast.success('توییت شما ارسال شد')
-            setNewTweet("")
+            setNewTweet(tweetDispatch,"")
         })
     }
 
@@ -51,7 +52,7 @@ const NewTweet = () => {
         <div className={classes.newTweet}>
             <Grid container>
                 <img src={getImage()} className={classes.newTweetImage} />
-                <input  value={newTweet} onChange={(e)=> setNewTweet(e.target.value)} placeholder="توییت کن..." className={classes.input}/>
+                <input  value={newTweet} onChange={(e)=> setNewTweet(tweetDispatch,e.target.value)} placeholder="توییت کن..." className={classes.input}/>
                 <input type={"file"} style={{display: "none"}} ref={inputFile} onChange={onChangeImg} />
             </Grid> 
             { imagePath &&

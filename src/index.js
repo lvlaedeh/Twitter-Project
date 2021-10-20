@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
 import Theme from './component/Theme';
+import { TweetProvider } from './conext/TweetContext';
 
 ReactDOM.render(
   <ThemeProvider theme={Theme}>
   <React.StrictMode>
-    <App />
+    <TweetProvider>
+      <App />
+    </TweetProvider>
   </React.StrictMode>
   </ThemeProvider>,
   document.getElementById('root')

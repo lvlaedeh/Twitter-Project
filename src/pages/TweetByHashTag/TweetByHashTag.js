@@ -16,7 +16,7 @@ const TweetByHashTag = (props) => {
             else setTweets(data)
         })
     },[])
-
+    console.log(props);
     const classes = useStyles()
     return (
         <div>

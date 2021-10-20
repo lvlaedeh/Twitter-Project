@@ -12,7 +12,7 @@ getAxiosInstanceApi().post("getAllTweet").then((response)=> {
 }
 
 export const getUser = (callback) => {
-getAxiosInstanceJsonServer().get("/user").then((response)=> {
+getAxiosInstanceApi().get("getAllUser").then((response)=> {
     const data = response.data
     callback(true,data)
 }).catch((error) => {
@@ -22,7 +22,7 @@ getAxiosInstanceJsonServer().get("/user").then((response)=> {
 }
 
 export const getHashTags = (callback) => {
-    getAxiosInstanceJsonServer().get("/hashTags").then((response)=> {
+    getAxiosInstanceApi().get("getAllHashTags").then((response)=> {
         const data = response.data
         callback(true,data)
     }).catch((error) => {

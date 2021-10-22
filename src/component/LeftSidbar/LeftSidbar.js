@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { uploadUserPhoto } from '../../api/api-auth'
 import { getUser } from '../../api/api_tweet'
+import { useTweetDispatch, useTweetState, setUserList as setUser } from '../../conext/TweetContext'
 import { useStyles } from './style'
 import Tweeter from './tweeter/tweeter'
 
 const LeftSidbar = () => {
 
-    const [user,setUser] = useState([])
+    const {user} = useTweetState()
+    const tweetDispatch = useTweetDispatch()
     const inputRef = useRef()
     const [imageFile,setImageFile] = useState()
     const [imagePath,setImagePath] = useState()
@@ -27,7 +29,7 @@ const LeftSidbar = () => {
         getUser((isOk,data)=>{
             if(!isOk)
                 return toast.error(data.massege);
-            else setUser(data)
+            else setUser(tweetDispatch,data)
         })
     },[])
 
@@ -76,7 +78,7 @@ const LeftSidbar = () => {
                 return(
                     <>
                     
-                        <Link to={"/users/"+item.name} style={{width: '100%'}} >
+                        <Link to={`/users/${item.name}/${item._id}`} style={{width: '100%'}} >
                             <Tweeter name={item.name} id={item.username} image={item.image} />
                         </Link>
                         {index!==user.length-1 &&

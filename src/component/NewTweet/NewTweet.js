@@ -3,7 +3,7 @@ import useStyles from './Styles'
 import React , {useRef, useState} from 'react'
 import { newTweetReqest } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
-import {setTweetText as setNewTweet, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
+import {setTweetText as setNewTweet, uploadTweetList, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
 
 const NewTweet = () => {
     
@@ -23,6 +23,7 @@ const NewTweet = () => {
                 return toast.error(response)
             toast.success('توییت شما ارسال شد')
             setNewTweet(tweetDispatch,"")
+            uploadTweetList(tweetDispatch)
         })
     }
 

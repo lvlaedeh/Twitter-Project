@@ -1,22 +1,28 @@
 import { Divider } from '@material-ui/core'
-import React , {useEffect , useState} from 'react'
+import React , {useEffect} from 'react'
 import TweetList from '../../component/TweetList/TweetList'
 import useStyles from '../Styles'
 import Header from '../../component/Header/Header'
-import { getAllTweets } from '../../api/api_tweet'
+import { getTweetsByHashtagReqest } from '../../api/api_tweet'
+import { setTweetList, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
+import { toast } from 'react-toastify'
+import { useLocation } from 'react-router-dom'
 
 const TweetByHashTag = (props) => {
 
-    const [tweets,setTweets] = useState([])
+    const {tweetList:tweets} = useTweetState()
+    const tweetDispatch = useTweetDispatch()
+    const location = useLocation()
 
     useEffect(()=>{
-        getAllTweets((isOk,data)=>{
+        
+        getTweetsByHashtagReqest(props.match.params.hashtag,(isOk,data)=>{
             if(!isOk)
-                return alert(data.massege);
-            else setTweets(data)
+                return toast.error(data);
+            else setTweetList(tweetDispatch,data)
         })
-    },[])
-    console.log(props);
+    },[location])
+
     const classes = useStyles()
     return (
         <div>

@@ -19,7 +19,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/hashtags/:hashtag" component={TweetByHashTag}/>
-              <Route path="/users/:user" component={TweetsByUser} />
+              <Route path="/users/:name/:id" component={TweetsByUser} />
             </Switch>
           </Layout>
           }/>

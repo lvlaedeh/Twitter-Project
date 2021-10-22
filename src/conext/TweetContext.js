@@ -1,4 +1,5 @@
 import React from "react";
+import { getAllTweets } from "../api/api_tweet";
 
 var TweetStateContext = React.createContext();
 var TweetDispatchContext = React.createContext();
@@ -9,6 +10,10 @@ function tweetReducer(state, action) {
       return {...state, tweetText: action.paylod};
     case "SET_TWEET_LIST":
       return {...state, tweetList: action.paylod};
+    case "SET_HASHTAG_LIST":
+      return {...state, hashTag: action.paylod};
+    case "SET_USER_LIST":
+      return {...state, user: action.paylod};
     case "LIKE_TWEET":
       const tweetId = action.paylod;
       const foundIndex = state.tweetList.findIndex(item => item._id === tweetId)
@@ -25,6 +30,8 @@ function TweetProvider({children}) {
   var [state, dispatch] = React.useReducer(tweetReducer, {
     tweetText: "",
     tweetList: [],
+    hashTag: [],
+    user: [],
   });
   return (
     <TweetStateContext.Provider value={state}>
@@ -51,7 +58,7 @@ function useTweetDispatch() {
   return context;
 }
 
-export {TweetProvider, useTweetState, useTweetDispatch, setTweetText, setTweetList, likeTweet};
+export {TweetProvider, useTweetState, useTweetDispatch, setTweetText, setTweetList, likeTweet, uploadTweetList, setHashTagList ,setUserList};
 
 // ###########################################################
 function setTweetText(dispatch,tweetText) {
@@ -60,12 +67,39 @@ function setTweetText(dispatch,tweetText) {
     paylod: tweetText
   });
 }
+
 function setTweetList(dispatch,tweetList) {
   dispatch({
     type: "SET_TWEET_LIST",
     paylod: tweetList
   });
 }
+
+function setHashTagList(dispatch,hashTag) {
+  dispatch({
+    type: "SET_HASHTAG_LIST",
+    paylod: hashTag
+  });
+}
+
+function setUserList(dispatch,user) {
+  dispatch({
+    type: "SET_USER_LIST",
+    paylod: user
+  });
+}
+
+function uploadTweetList(dispatch) {
+  getAllTweets((isOk,data)=>{
+    if(isOk){
+      dispatch({
+        type: "SET_TWEET_LIST",
+        paylod: data
+      });
+    }
+  })
+}
+
 function likeTweet(dispatch,id) {
   dispatch({
     type: "LIKE_TWEET",

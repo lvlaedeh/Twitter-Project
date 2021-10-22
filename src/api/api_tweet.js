@@ -11,6 +11,27 @@ getAxiosInstanceApi().post("getAllTweet").then((response)=> {
 })
 }
 
+export const getTweetsByHashtagReqest = (hashTag,callback) =>{
+    getAxiosInstanceApi().post("getAllTweet",{hashTag}).then((response)=> {
+        const data = response.data
+        callback(true,data)
+    }).catch((error) => {
+        console.log(error);
+        callback(false,error)
+    })
+    }
+
+    export const getTweetsByUserReqest = (user,callback) =>{
+        getAxiosInstanceApi().post("getAllTweet",{user})
+        .then((response)=> {
+            const data = response.data
+            callback(true,data)
+        }).catch((error) => {
+            console.log(error);
+            callback(false,error)
+        })
+        }
+
 export const getUser = (callback) => {
 getAxiosInstanceApi().get("getAllUser").then((response)=> {
     const data = response.data

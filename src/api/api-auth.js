@@ -32,3 +32,13 @@ export const loginApi = (user,callback) => {
             callback(false,error?.response?.data.message)
         })
         }
+
+        export const getProfileReqest = (callback) =>{
+          getAxiosInstanceApi().get("getProfile").then((response)=> {
+              const data = response.data
+              callback(true,data)
+          }).catch((error) => {
+              console.log(error);
+              callback(false,error?.response?.data.message)
+          })
+          }

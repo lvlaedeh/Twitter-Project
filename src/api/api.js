@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const token = localStorage.getItem("x-auth-token")
 export const getAxiosInstanceJsonServer = () => {
    return( axios.create({
         baseURL: "http://localhost:3000",
@@ -22,7 +22,7 @@ export const getAxiosInstanceJsonServer = () => {
     return( axios.create({
          baseURL: "https://twitterapi.liara.run/api/",
          headers: {
-            'Content-Type' : 'hhhhhhhh',
+            'Content-Type' : 'application/json',
             'x-auth-token' : localStorage.getItem("x-auth-token")
          }
      })

@@ -1,5 +1,4 @@
-import { getAxiosInstanceApi, getAxiosInstanceJsonServer } from "./api";
-
+import { getAxiosInstanceApi } from "./api";
 
 export const getAllTweets = (callback) =>{
 getAxiosInstanceApi().post("getAllTweet").then((response)=> {
@@ -11,8 +10,11 @@ getAxiosInstanceApi().post("getAllTweet").then((response)=> {
 })
 }
 
-export const getTweetsByHashtagReqest = (hashTag,callback) =>{
-    getAxiosInstanceApi().post("getAllTweet",{hashTag}).then((response)=> {
+
+export const getTweetsByHashtagReqest = (hashTags,callback) =>{
+    console.log({hashTags},"test");
+    
+    getAxiosInstanceApi().post("getAllTweet",{"hashTag":hashTags}).then((response)=> {
         const data = response.data
         callback(true,data)
     }).catch((error) => {

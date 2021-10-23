@@ -15,7 +15,6 @@ const TweetByHashTag = (props) => {
     const location = useLocation()
 
     useEffect(()=>{
-        
         getTweetsByHashtagReqest(props.match.params.hashtag,(isOk,data)=>{
             if(!isOk)
                 return toast.error(data);

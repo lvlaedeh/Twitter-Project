@@ -8,6 +8,7 @@ import TweetsByUser from './pages/TweetsByUser/TweetsByUser'
 import auth from './pages/auth/Auth'
 import { ToastContainer } from 'react-toastify'
 import './i18n'
+import ErrorPage from './pages/404/404'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
               <Route path="/" exact component={Home} />
               <Route path="/hashtags/:hashtag" component={TweetByHashTag}/>
               <Route path="/users/:name/:id" component={TweetsByUser} />
+              <Route  component={ErrorPage} />
             </Switch>
           </Layout>
           }/>

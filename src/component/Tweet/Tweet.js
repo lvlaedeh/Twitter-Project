@@ -40,9 +40,9 @@ const Tweet = ({data}) => {
             <Grid container>
                 <img src={getImage()} className={classes.tweetImage} />
                 <Grid item container direction={"column"} style={{flex: 1, marginRight: '1rem'}}>
-                    <Grid item container>
+                    <Grid item >
                         <Typography className={classes.tweetName}>{data.user.name}</Typography>
-                        <Typography className={classes.tweetId}>{data.user.id}</Typography>
+                        <Typography className={classes.tweetId}>{data.user.username}@</Typography>
                     </Grid>
                     <Grid item>
                         <Typography dangerouslySetInnerHTML={renderTweet(data.text)} className={classes.tweetText} component={"p"}></Typography>

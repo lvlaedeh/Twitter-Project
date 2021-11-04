@@ -8,12 +8,14 @@ import { getTweetsByUserReqest } from '../../api/api_tweet'
 import { setTweetList, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
 import { toast } from 'react-toastify'
 import { useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 const TweetsByUser = (props) => {
 
     const {tweetList:tweets} = useTweetState()
     const tweetDispatch = useTweetDispatch()
     const location = useLocation()
+    const {t} = useTranslation()
 
     useEffect(()=>{
         getTweetsByUserReqest(props.match.params.id,(isOk,data)=>{
@@ -30,7 +32,7 @@ const TweetsByUser = (props) => {
             <Header icon={<Person/>} title={props.match.params.name} />
             <Divider className={classes.divder}/>
             {tweets.length === 0 &&
-                <Typography>این کاربر توییتی نکرده است.</Typography>
+                <Typography>{t("warn.noTweetFromUser")}</Typography>
             }
             <TweetList data={tweets}/>
         </div>

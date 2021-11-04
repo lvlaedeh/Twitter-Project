@@ -1,14 +1,17 @@
 import { Typography , Tabs, Tab, Paper, Input, Button } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import useStyles from './Styles'
 import {toast} from 'react-toastify'
 import { loginApi, registerApi } from '../../api/api-auth'
+import { useTranslation } from 'react-i18next'
 
 const LOGIN_TAB_VALUE = 1
 const REG_TAB_VALUE = 2
 
 const Auth = () => {
+
     const classes = useStyles()
+    const {t} = useTranslation()
 
     const [tab,setTab] = useState(LOGIN_TAB_VALUE)
 
@@ -26,20 +29,20 @@ const Auth = () => {
 
     const validateLogin = (user) => {
         if(!user.username)
-            return " حتما یوزرنیم را وارد کنید"
+            return t("validate.username")
         if(!user.password)
-            return " حتما پسورد را وارد کنید"
+            return t("validate.password")
     }
 
     const validateRegister = (user) => {
         if(!user.name)
-            return " حتما نام کامل خود را وارد کنید"
+            return t("validate.fullName")
         if(!user.username)
-            return " حتما یوزرنیم را وارد کنید"
+            return t("validate.username")
         if(!user.password)
-            return " حتما پسورد را وارد کنید"
+            return t("validate.password")
         if(user.password !== user.confPassword)
-            return " پسورد شما باهم یکسان نیست"
+            return t("validate.confPassword")
     }
 
 
@@ -54,7 +57,7 @@ const Auth = () => {
         loginApi(user,(isOk,data)=>{
             if(!isOk)
                 return toast.error(data);
-            toast.success("شما با موفقیت وارد شدید")
+            toast.success(t("success.login"))
             localStorage.setItem("name",data.name)
             localStorage.setItem("image",data.image)
             localStorage.setItem("username",data.username)
@@ -77,7 +80,7 @@ const Auth = () => {
         registerApi(user,(isOk,data)=>{
             if(!isOk)
                 return toast.error(data);
-            toast.success("شما با موفقیت ثبت نام شدید")
+            toast.success(t("success.register"))
             localStorage.setItem("name",data.name)
             localStorage.setItem("image",data.image)
             localStorage.setItem("username",data.username)
@@ -88,7 +91,7 @@ const Auth = () => {
 
     return (
         <Paper className={classes.container}>
-            <Typography className={classes.headerText} >به توییتر فارسی خوش آمدید</Typography>
+            <Typography className={classes.headerText} >{t("welcome")}</Typography>
             <Tabs
                 value={tab}
                 onChange={handleChangeTab}
@@ -97,29 +100,29 @@ const Auth = () => {
                 textColor="primary"
                 variant="fullWidth"
             >
-                <Tab value={LOGIN_TAB_VALUE} label="ورود" className={classes.tab} />
-                <Tab value={REG_TAB_VALUE} label="ثبت نام" className={classes.tab} />
+                <Tab value={LOGIN_TAB_VALUE} label={t("tab.login")} className={classes.tab} />
+                <Tab value={REG_TAB_VALUE} label={t("tab.register")} className={classes.tab} />
             </Tabs>
             {tab === LOGIN_TAB_VALUE && 
                 <div className={classes.containerInput}>
-                    <Typography>نام کاربری</Typography>
+                    <Typography>{t("label.username")}</Typography>
                     <Input value={usernameLogin} onChange={(e)=>setUsernameLogin(e.target.value)}  className={"uni_m_b_small"}></Input>
-                    <Typography>رمز عبور</Typography>
+                    <Typography>{t("label.password")}</Typography>
                     <Input value={passwordLogin} onChange={(e)=>setPasswordLogin(e.target.value)} className={"uni_m_b_small"}></Input>
-                    <Button variant={"contained"} onClick={handleLogin} color="primary">ورود</Button>
+                    <Button variant={"contained"} onClick={handleLogin} color="primary">{t("btn.login")}</Button>
                 </div>
             }
             {tab === REG_TAB_VALUE &&
             <div className={classes.containerInput}>
-                <Typography>نام کامل</Typography>
+                <Typography>{t("label.fullName")}</Typography>
                 <Input value={fullNameRegister} onChange={(e)=>setFullNameRegister(e.target.value)} className={"uni_m_b_small"}></Input>
-                <Typography>نام کاربری</Typography>
+                <Typography>{t("label.username")}</Typography>
                 <Input value={usernameRegister} onChange={(e)=>setUsernameRegister(e.target.value)} className={"uni_m_b_small"}></Input>
-                <Typography>رمز عبور</Typography>
+                <Typography>{t("label.password")}</Typography>
                 <Input value={passwordRegister} onChange={(e)=>setPasswordRegister(e.target.value)} className={"uni_m_b_small"}></Input>
-                <Typography>تکرار رمز عبور</Typography>
+                <Typography>{t("label.confPassword")}</Typography>
                 <Input value={confPasswordRegister} onChange={(e)=>setConfPasswordRegister(e.target.value)} className={"uni_m_b_small"}></Input>
-                <Button onClick={handleRegister} variant={"contained"} color="primary">ثبت نام</Button>
+                <Button onClick={handleRegister} variant={"contained"} color="primary">{t("btn.register")}</Button>
             </div>  
             }
         </Paper>

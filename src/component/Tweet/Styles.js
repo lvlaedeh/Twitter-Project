@@ -29,7 +29,8 @@ newTweetImgBtn: {
     marginLeft: '0.5rem'
 },
 tweetId: {
-    color: theme.palette.text.hint
+    color: theme.palette.text.hint,
+    fontSize: '0.9rem'
 },
 tweetImg: {
   width: '20rem',

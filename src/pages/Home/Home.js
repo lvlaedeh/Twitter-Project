@@ -8,11 +8,13 @@ import HouseIcon from '@material-ui/icons/House';
 import { getAllTweets } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
 import { setTweetList as setTweets ,useTweetDispatch,useTweetState } from '../../conext/TweetContext'
+import { useTranslation } from 'react-i18next'
 
 const Home = () => {
 
     const {tweetList: tweets} = useTweetState()
     const tweetDispatch = useTweetDispatch()
+    const {t} = useTranslation()
 
     useEffect(()=>{
         getAllTweets((isOk,data)=>{
@@ -26,7 +28,7 @@ const Home = () => {
     const classes = useStyles()
     return (
         <div className={classes.homePage}>
-            <Header icon={<HouseIcon/>} title={"خانه"}/>
+            <Header icon={<HouseIcon/>} title={t("home")}/>
             <Divider className={classes.divder}/>
             <NewTweet />
             <TweetList data={tweets}/>

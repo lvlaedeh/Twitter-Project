@@ -6,12 +6,14 @@ import { getProfileReqest } from '../../api/api-auth'
 import { toast } from 'react-toastify'
 import { useHistory } from 'react-router'
 import { Divider, CircularProgress, Typography } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 
 const Layout = (props) => {
 
     const [wait,setWait] = useState(true)
     const classes = useStyles()
     const history = useHistory()
+    const {t} = useTranslation()
 
     useEffect(()=>{
         getProfileReqest((isOk,data)=>{
@@ -32,7 +34,7 @@ const Layout = (props) => {
     if(wait)
         return (<div className={classes.wait}>
                     <CircularProgress className={"uni_m_b_small"} />
-                    <Typography>شکیبا باشید</Typography>
+                    <Typography>{t("wait")}</Typography>
                 </div>
         )
     return (

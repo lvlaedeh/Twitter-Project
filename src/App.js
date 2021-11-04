@@ -7,6 +7,7 @@ import TweetByHashTag from './pages/TweetByHashTag/TweetByHashTag'
 import TweetsByUser from './pages/TweetsByUser/TweetsByUser'
 import auth from './pages/auth/Auth'
 import { ToastContainer } from 'react-toastify'
+import './i18n'
 
 const App = () => {
   return (

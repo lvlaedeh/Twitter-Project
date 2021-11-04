@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { Grid , Typography , ButtonBase} from '@material-ui/core'
 import { getHashTags } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
 import { useTweetDispatch, useTweetState, setHashTagList as setHashtag } from '../../conext/TweetContext'
+import { useTranslation } from 'react-i18next'
 
 const RightSidbar = () => {
 
     const {hashTag} = useTweetState()
     const tweetDispatch = useTweetDispatch()
+    const {t} = useTranslation()
 
     useEffect(()=>{
         getHashTags((isOk,data)=>{
@@ -29,12 +31,12 @@ const RightSidbar = () => {
                 </Grid>
                 <Grid item>
                     <Typography className={classes.logoType} >
-                        توییتر فارسی
+                    {t("appTitle")}
                     </Typography>
                 </Grid>
             </Grid>
             <Typography className={classes.hashtagTitle}>
-                     داغ ترین هشتگ ها
+                {t("hashTagTitle")}
             </Typography>
             <Grid container direction="column" alignItems={'center'}>
                 {hashTag.map(item => <ButtonBase className={classes.hashtagParent}>

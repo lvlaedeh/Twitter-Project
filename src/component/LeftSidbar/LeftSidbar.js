@@ -1,5 +1,6 @@
 import { Divider, Grid, Menu, MenuItem, Typography } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { uploadUserPhoto } from '../../api/api-auth'
@@ -15,12 +16,14 @@ const LeftSidbar = () => {
     const inputRef = useRef()
     const [imageFile,setImageFile] = useState()
     const [imagePath,setImagePath] = useState()
+    const {t, i18n} = useTranslation()
 
     const [anchorEl, setAnchorEl] =useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -32,6 +35,14 @@ const LeftSidbar = () => {
             else setUser(tweetDispatch,data)
         })
     },[])
+
+    const changeLang = () => {
+        if(i18n.language === "fa" ){
+            i18n.changeLanguage("en")
+        }else {
+            i18n.changeLanguage("fa")
+        }
+    }
 
     const getImage = () => {
         if(imagePath)
@@ -55,7 +66,7 @@ const LeftSidbar = () => {
         uploadUserPhoto(formData,(isOk,data)=>{
             if(!isOk)
                 return toast.error(data)
-            toast.success("عکس شما با موفقیت آپلود شد")
+            toast.success(data)
             localStorage.setItem("image",data.imagePath)
         })
     }
@@ -72,7 +83,7 @@ const LeftSidbar = () => {
                 <input ref={inputRef} type="file" style={{display:"none"}} onChange={handleAvatorChange} />
             </Grid>
             <Grid container direction="column" className={classes.tweeterRoot}>
-                <Typography className={classes.tweeterTitle}> بهترین خبرنگاران</Typography>
+                <Typography className={classes.tweeterTitle}>{t("userTitle")}</Typography>
                 <Divider style={{margin: '0 -24px'}} />
                 {user.map((item,index)=>{
                 return(
@@ -86,23 +97,20 @@ const LeftSidbar = () => {
                     </>
                 )})}
             </Grid>
-            <Menu elevation={0}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }} 
+            <Menu 
                 anchorEl={anchorEl} 
                 open={open} 
                 onClose={handleClose}>
-                <MenuItem onClick={()=> inputRef.current.click()}>آپلود عکس پروفایل </MenuItem>
+                <MenuItem onClick={()=> inputRef.current.click()}>
+                    {t("editProfilePhotoMenu")}
+                </MenuItem>
+                <MenuItem onClick={changeLang}>
+                    {t("changeLangMenu")}
+                </MenuItem>
                 <MenuItem onClick={()=> { 
                     localStorage.clear(); 
                     window.location.reload()
-                    }} >خروج</MenuItem>
+                    }} >{t("logoutMenu")}</MenuItem>
             </Menu>
         </div>
     )

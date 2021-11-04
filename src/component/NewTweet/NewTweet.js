@@ -4,6 +4,7 @@ import React , {useRef, useState} from 'react'
 import { newTweetReqest } from '../../api/api_tweet'
 import { toast } from 'react-toastify'
 import {setTweetText as setNewTweet, uploadTweetList, useTweetDispatch, useTweetState } from '../../conext/TweetContext'
+import { useTranslation } from 'react-i18next'
 
 const NewTweet = () => {
     
@@ -12,6 +13,7 @@ const NewTweet = () => {
     const inputFile = useRef()
     const [imageFile,setImageFile] = useState()
     const [imagePath,setImagePath] = useState()
+    const {t} = useTranslation()
 
     const submitNewTweet = () => {
         const formData = new FormData()
@@ -21,7 +23,7 @@ const NewTweet = () => {
         newTweetReqest(formData,(isOk,response)=>{
             if(!isOk)
                 return toast.error(response)
-            toast.success('توییت شما ارسال شد')
+            toast.success(response)
             setNewTweet(tweetDispatch,"")
             uploadTweetList(tweetDispatch)
         })
@@ -53,7 +55,7 @@ const NewTweet = () => {
         <div className={classes.newTweet}>
             <Grid container>
                 <img src={getImage()} className={classes.newTweetImage} />
-                <input  value={newTweet} onChange={(e)=> setNewTweet(tweetDispatch,e.target.value)} placeholder="توییت کن..." className={classes.input}/>
+                <input  value={newTweet} onChange={(e)=> setNewTweet(tweetDispatch,e.target.value)} placeholder={t("label.doTweet")} className={classes.input}/>
                 <input type={"file"} style={{display: "none"}} ref={inputFile} onChange={onChangeImg} />
             </Grid> 
             { imagePath &&
@@ -62,7 +64,7 @@ const NewTweet = () => {
                 </div>
             }
             <Grid container direction={'row-reverse'} style={{marginTop: '1rem'}}>
-                <Button disabled={!newTweet} variant={'contained'} color={'primary'} onClick={submitNewTweet} className={classes.newTweetButton}>توییت</Button>
+                <Button disabled={!newTweet} variant={'contained'} color={'primary'} onClick={submitNewTweet} className={classes.newTweetButton}>{t("btn.tweet")}</Button>
                 <IconButton className={classes.newTweetImgBtn}>
                     <img src={'./images/tweetpic.png'} onClick={setInputClick} className={classes.newTweetImg}/>
                 </IconButton>

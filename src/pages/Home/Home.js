@@ -26,6 +26,7 @@ const Home = () => {
 
 
     const classes = useStyles()
+
     return (
         <div className={classes.homePage}>
             <Header icon={<HouseIcon/>} title={t("home")}/>

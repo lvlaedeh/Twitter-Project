@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme)=>({
       fontSize: "1.2rem",
       marginRight: '0.4rem',
   },
+  menuIcon: {
+    padding: 0,
+    marginLeft : "0.5rem"
+  }
 
 }))
 

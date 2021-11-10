@@ -5,14 +5,17 @@ import LeftSidbar from '../LeftSidbar/LeftSidbar'
 import { getProfileReqest } from '../../api/api-auth'
 import { toast } from 'react-toastify'
 import { useHistory } from 'react-router'
-import { Divider, CircularProgress, Typography } from '@material-ui/core'
+import { Divider, CircularProgress, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import TwitterDrawer from '../Drawer/TwitterDrawer'
 
 const Layout = (props) => {
 
     const [wait,setWait] = useState(true)
     const classes = useStyles()
     const history = useHistory()
+    const theme = useTheme()
+    const isTableSize = useMediaQuery(theme.breakpoints.down('sm'))
     const {t} = useTranslation()
 
     useEffect(()=>{
@@ -39,7 +42,7 @@ const Layout = (props) => {
         )
     return (
         <div className={classes.root}>
-            <RightSidbar/>
+            {isTableSize ? <TwitterDrawer/> :<RightSidbar/>}
             <Divider orientation={"vertical"} className={classes.divider} />
             <div className={classes.content}>
                {props.children}

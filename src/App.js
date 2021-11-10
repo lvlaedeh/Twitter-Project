@@ -9,6 +9,7 @@ import auth from './pages/auth/Auth'
 import { ToastContainer } from 'react-toastify'
 import './i18n'
 import ErrorPage from './pages/404/404'
+import { LayoutProvider } from './conext/LayloutContext'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Switch>
           <PuplicRoute path="/login" component={auth} />
           <PrivateRoute path="/" render={()=>
+          <LayoutProvider>
           <Layout>
             <Switch>
               <Route path="/" exact component={Home} />
@@ -25,6 +27,7 @@ const App = () => {
               <Route  component={ErrorPage} />
             </Switch>
           </Layout>
+          </LayoutProvider>
           }/>
           </Switch>
         </Router>
